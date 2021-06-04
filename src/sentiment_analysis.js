@@ -4,7 +4,7 @@ import styled from "styled-components"
 import useInterval from "@use-it/interval"
 import axios from "axios"
 
-const newsBaseUrl = process.env.REACT_APP_BASE_URL_NEWS
+const baseUrl = process.env.REACT_APP_BASE_URL
 
 const decodeString = (input) => {
   var txt = document.createElement("textarea")
@@ -32,7 +32,7 @@ const SentimentAnalysis = ({ rssFeed }) => {
   const [limit, setLimit] = useState(300)
 
   const getRssCount = async () => {
-    const countRes = await axios.get(`${newsBaseUrl}/api/v1/rss/count`)
+    const countRes = await axios.get(`${baseUrl}/api/v1/rss/count`)
     let count = countRes?.data?.data?.count
     let tLimit = 300
 
@@ -47,7 +47,7 @@ const SentimentAnalysis = ({ rssFeed }) => {
 
   const parseRss = async () => {
     const newFeed = await axios.get(
-      `${newsBaseUrl}/api/v1/rss?_limit=${limit}&_offset=${page * limit}`
+      `${baseUrl}/api/v1/rss?_limit=${limit}&_offset=${page * limit}`
     )
 
     setFeed(newFeed.data.data.reverse())
