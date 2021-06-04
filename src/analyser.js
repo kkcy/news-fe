@@ -142,7 +142,7 @@ const Analyser = ({ rssFeed, source, rss = true, getMore }) => {
     <>
       {analysing?.length > 0 ? (
         analysing.map((item, i) => (
-          <div className="collumn" key={item.title}>
+          <div key={item.title}>
             <div className="head">
               <span className="headline hl3">{decodeString(item?.title)}</span>
               <p>
@@ -157,7 +157,11 @@ const Analyser = ({ rssFeed, source, rss = true, getMore }) => {
                 )}
               </p>
 
-              {!rss && <img src={item?.image} alt="" style={{ marginBottom: 12 }} />}
+              {!rss && (
+                <div>
+                  <img src={item?.image} alt="" style={{ marginBottom: 12 }} />
+                </div>
+              )}
 
               <Highlighter
                 highlightClassName="highlight-news"
